@@ -66,6 +66,10 @@ Player2Left={
 ]
 }
 
+[physics]
+
+common/physics_ticks_per_second=140
+
 [rendering]
 
 renderer/rendering_method="mobile"
