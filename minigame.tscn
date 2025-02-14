@@ -1,43 +1,52 @@
-[gd_scene load_steps=7 format=3 uid="uid://b07td77k8fr8x"]
+[gd_scene load_steps=10 format=3 uid="uid://b07td77k8fr8x"]
 
-[ext_resource type="Script" path="res://Player1.gd" id="1_glqu4"]
+[ext_resource type="Texture2D" uid="uid://cygvyl3jpcxij" path="res://PlayerSprites/mamaTemp.png" id="2_8b0hp"]
 [ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="2_tv4uw"]
 [ext_resource type="Script" path="res://Player2.gd" id="3_2kb6p"]
+[ext_resource type="Texture2D" uid="uid://2qc7ns1swxpe" path="res://PlayerSprites/leoniTemp.png" id="4_3af71"]
+[ext_resource type="Texture2D" uid="uid://r2ahtleimap8" path="res://PlayerSprites/boat.png" id="5_ahmar"]
+[ext_resource type="Texture2D" uid="uid://cwtdh0ekt6nxn" path="res://PlayerSprites/water.png" id="7_h1qbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2rvf"]
-size = Vector2(120, 125)
+size = Vector2(79.9787, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l4q0m"]
 size = Vector2(113, 111)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k2dvv"]
-radius = 137.004
+radius = 82.7647
 
 [node name="Minigame" type="Node2D"]
 
-[node name="Player1" type="CharacterBody2D" parent="."]
-position = Vector2(667, 273)
-script = ExtResource("1_glqu4")
-
-[node name="Icon" type="Sprite2D" parent="Player1"]
-position = Vector2(1, -2)
-texture = ExtResource("2_tv4uw")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
-position = Vector2(2, -0.5)
-shape = SubResource("RectangleShape2D_p2rvf")
-
 [node name="Player2" type="CharacterBody2D" parent="."]
-position = Vector2(309, 272)
+position = Vector2(109, 95)
 script = ExtResource("3_2kb6p")
 
-[node name="Icon" type="Sprite2D" parent="Player2"]
-position = Vector2(1, 0)
-texture = ExtResource("2_tv4uw")
+[node name="Boat" type="Sprite2D" parent="Player2"]
+texture_filter = 1
+position = Vector2(4.25, 6.25)
+scale = Vector2(1.025, 1.025)
+texture = ExtResource("5_ahmar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
-position = Vector2(2, 1.5)
+position = Vector2(6.25, 11.25)
+rotation = 0.00901031
 shape = SubResource("RectangleShape2D_p2rvf")
+
+[node name="LeoniTemp" type="Sprite2D" parent="Player2"]
+texture_filter = 1
+position = Vector2(18.75, -5.24999)
+scale = Vector2(0.66, 0.58)
+texture = ExtResource("4_3af71")
+
+[node name="Camera2D" type="Camera2D" parent="Player2"]
+position = Vector2(-23, 2)
+
+[node name="MamaTemp" type="Sprite2D" parent="Player2"]
+texture_filter = 1
+position = Vector2(-16.5625, -4.26109)
+scale = Vector2(0.502501, 0.549557)
+texture = ExtResource("2_8b0hp")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(488, 421)
@@ -51,7 +60,18 @@ position = Vector2(2, 3.5)
 shape = SubResource("RectangleShape2D_l4q0m")
 
 [node name="Water" type="Area2D" parent="."]
-position = Vector2(49, 608)
+position = Vector2(902, 412)
+rotation = 0.523598
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
 shape = SubResource("CircleShape2D_k2dvv")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(320, 0)
+
+[node name="waterBG" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(158.25, 114.25)
+scale = Vector2(0.3575, 0.3175)
+texture = ExtResource("7_h1qbf")
