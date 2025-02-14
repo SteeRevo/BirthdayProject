@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b07td77k8fr8x"]
+[gd_scene load_steps=17 format=3 uid="uid://b07td77k8fr8x"]
 
+[ext_resource type="Script" path="res://Player1.gd" id="1_xxts6"]
 [ext_resource type="Texture2D" uid="uid://cygvyl3jpcxij" path="res://PlayerSprites/mamaTemp.png" id="2_8b0hp"]
 [ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="2_tv4uw"]
-[ext_resource type="Script" path="res://Player2.gd" id="3_2kb6p"]
 [ext_resource type="Texture2D" uid="uid://2qc7ns1swxpe" path="res://PlayerSprites/leoniTemp.png" id="4_3af71"]
+[ext_resource type="Script" path="res://aiming_recticle.gd" id="5_3ct7p"]
 [ext_resource type="Texture2D" uid="uid://r2ahtleimap8" path="res://PlayerSprites/boat.png" id="5_ahmar"]
 [ext_resource type="Script" path="res://ParallaxBackground.gd" id="6_rvg5c"]
 [ext_resource type="Texture2D" uid="uid://cwtdh0ekt6nxn" path="res://PlayerSprites/water.png" id="7_h1qbf"]
@@ -46,7 +47,7 @@ distance = 26.0
 
 [node name="PlayerBoat" type="CharacterBody2D" parent="."]
 position = Vector2(109, 95)
-script = ExtResource("3_2kb6p")
+script = ExtResource("1_xxts6")
 
 [node name="Boat" type="Sprite2D" parent="PlayerBoat"]
 texture_filter = 1
@@ -70,6 +71,15 @@ texture_filter = 1
 position = Vector2(-16.5625, -4.26109)
 scale = Vector2(0.502501, 0.549557)
 texture = ExtResource("2_8b0hp")
+
+[node name="AimingRecticle" type="Node2D" parent="PlayerBoat"]
+position = Vector2(-17, -3)
+script = ExtResource("5_3ct7p")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBoat/AimingRecticle"]
+position = Vector2(26, 1)
+scale = Vector2(0.0703125, 0.046875)
+texture = ExtResource("2_tv4uw")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(488, 421)
@@ -96,7 +106,7 @@ script = ExtResource("6_rvg5c")
 motion_mirroring = Vector2(320, 0)
 
 [node name="waterBG" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(179, 116)
+position = Vector2(181, 203)
 scale = Vector2(0.3575, 0.3175)
 texture = ExtResource("7_h1qbf")
 
