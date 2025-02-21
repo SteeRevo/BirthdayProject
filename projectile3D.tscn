@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc5d8d1nvsv2i"]
+
+[ext_resource type="Script" path="res://projectile3D.gd" id="1_wmlvi"]
+[ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="2_3lsuv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_arrw7"]
+radius = 0.289942
+
+[node name="Projectile" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.014665, 0, 0.730489)
+script = ExtResource("1_wmlvi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0197883, -0.0455421, 0.00213611)
+shape = SubResource("SphereShape3D_arrw7")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.447803, 0, 0, 0, 0.447803, 0, 0, 0, 0.447803, 0, 0, -0.0131464)
+texture = ExtResource("2_3lsuv")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

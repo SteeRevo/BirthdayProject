@@ -81,6 +81,9 @@ position = Vector2(26, 1)
 scale = Vector2(0.0703125, 0.046875)
 texture = ExtResource("2_tv4uw")
 
+[node name="Timer" type="Timer" parent="PlayerBoat/AimingRecticle"]
+wait_time = 0.5
+
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(488, 421)
 

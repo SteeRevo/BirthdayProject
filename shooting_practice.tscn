@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://tf2o6bkedbwe"]
+
+[ext_resource type="Script" path="res://Player1_3D.gd" id="1_ek1k8"]
+[ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="1_lf1xq"]
+[ext_resource type="Script" path="res://aim_reticle.gd" id="3_wfwkm"]
+[ext_resource type="Script" path="res://enemy.gd" id="4_ifq1y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pawok"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mqpo2"]
+size = Vector3(0.536987, 0.225098, 0.211426)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ppme"]
+
+[node name="ShootingPractice" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965701, 0)
+collision_layer = 2
+script = ExtResource("1_ek1k8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_pawok")
+
+[node name="Sprite3D" type="Sprite3D" parent="Player"]
+texture = ExtResource("1_lf1xq")
+
+[node name="Shooter" type="Area3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00557077)
+collision_layer = 2
+script = ExtResource("3_wfwkm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player/Shooter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103268, -0.0145228, 0.730408)
+shape = SubResource("BoxShape3D_mqpo2")
+
+[node name="Sprite3D" type="Sprite3D" parent="Player/Shooter"]
+transform = Transform3D(0.26288, 0, 0, 0, 0.26288, 0, 0, 0, 0.26288, 0.0815883, -0.0905941, 0.730348)
+texture = ExtResource("1_lf1xq")
+
+[node name="Timer" type="Timer" parent="Player/Shooter"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.880072, 0.474841, 0, -0.474841, 0.880072, 0, 9.19033, 6.21309)
+
+[node name="Enemy" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1581, 0.810088, 0.298431)
+script = ExtResource("4_ifq1y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+shape = SubResource("CapsuleShape3D_6ppme")
+
+[node name="Sprite3D" type="Sprite3D" parent="Enemy"]
+texture = ExtResource("1_lf1xq")
+
+[connection signal="area_entered" from="Enemy" to="Enemy" method="_on_area_entered"]

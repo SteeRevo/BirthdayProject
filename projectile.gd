@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 30
+var speed = 100
 var spawn_transform
 
 
