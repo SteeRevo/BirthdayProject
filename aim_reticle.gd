@@ -2,6 +2,7 @@ extends Area3D
 @export var projectile = preload("res://projectile3D.tscn")
 @onready var timer = $Timer
 var reloading = false
+signal firing
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,7 @@ func _process(delta: float) -> void:
 			p.set_spawn($Sprite3D.global_position)
 			timer.start()
 			reloading = true
+			emit_signal("firing")
 		
 func reload_start():
 	reloading = false

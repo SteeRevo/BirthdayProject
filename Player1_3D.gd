@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+@onready var model = $MamaModel
+@onready var model_ap = $MamaModel/AnimationPlayer
 
 
 func _physics_process(delta: float) -> void:
@@ -20,3 +22,8 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_shooter_firing():
+	model_ap.play("fire")
+	model.rotation_degrees.y = $Shooter.rotation_degrees.y
