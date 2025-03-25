@@ -1,11 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://tf2o6bkedbwe"]
+[gd_scene load_steps=19 format=3 uid="uid://tf2o6bkedbwe"]
 
 [ext_resource type="Script" path="res://Player1_3D.gd" id="1_ek1k8"]
 [ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="1_lf1xq"]
 [ext_resource type="Script" path="res://aim_reticle.gd" id="3_wfwkm"]
 [ext_resource type="PackedScene" uid="uid://vax1jmmj88hq" path="res://mama_model.tscn" id="4_0p2sc"]
 [ext_resource type="Script" path="res://enemy.gd" id="4_ifq1y"]
+[ext_resource type="Script" path="res://Leoni_movement.gd" id="5_kb17c"]
+[ext_resource type="Script" path="res://ShooterWave.gd" id="6_brimx"]
 [ext_resource type="Texture2D" uid="uid://c2r7ilmldi2v" path="res://grassbg.png" id="6_shwi7"]
+[ext_resource type="Script" path="res://WaterSpout.gd" id="8_6qmy5"]
+[ext_resource type="Texture2D" uid="uid://bbnf3fgvb4wyv" path="res://waterSpout.png" id="10_ej1t5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pawok"]
 
@@ -18,7 +22,17 @@ size = Vector3(0.536987, 0.225098, 0.211426)
 
 [sub_resource type="Environment" id="Environment_fyigu"]
 background_mode = 1
-background_color = Color(0.337255, 0.533333, 0.647059, 1)
+background_color = Color(0.564706, 0.670588, 0.976471, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnfcg"]
+albedo_texture = ExtResource("6_shwi7")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3tirm"]
+material = SubResource("StandardMaterial3D_rnfcg")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28qak"]
+size = Vector3(1.98076, 1, 2.00249)
 
 [node name="ShootingPractice" type="Node3D"]
 
@@ -48,6 +62,22 @@ texture = ExtResource("1_lf1xq")
 
 [node name="MamaModel" parent="Player" instance=ExtResource("4_0p2sc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.911756, 0)
+
+[node name="Player2" type="CharacterBody3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53903, 0, 0)
+script = ExtResource("5_kb17c")
+
+[node name="MamaModel" parent="Player2" instance=ExtResource("4_0p2sc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125414, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06041, 0)
+shape = SubResource("CapsuleShape3D_pawok")
+
+[node name="Shooter" type="Node3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3159, 0.545988)
+script = ExtResource("6_brimx")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.79936, 0.600853, 0, -0.600853, 0.79936, 0, 5.56511, 6.21309)
@@ -90,16 +120,37 @@ transform = Transform3D(0.000266933, -0.00767479, 0.99997, -0.999396, -0.03476, 
 transform = Transform3D(0.997584, 0.0694603, -0.00110517, 0.0694603, -0.997079, 0.0317754, 0.00110519, -0.0317754, -0.999494, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_la302")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(117.251, 0, 0, 0, 0.462619, -5.19253, 0, -104.77, -0.0229279, 0, 0.0210869, -1)
-texture_filter = 0
-texture = ExtResource("6_shwi7")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fyigu")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(53.1268, 0, 0, 0, 1, 0, 0, 0, 51.1976, 0, 0, 0)
+mesh = SubResource("PlaneMesh_3tirm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.053556, 0.998565, 0, -0.998565, -0.053556, 0, 17.054, 13.4543)
+light_energy = 0.856
+
+[node name="WaterSpout" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.54254, 0, -4.53678)
+script = ExtResource("8_6qmy5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterSpout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0578384, 0, 0)
+shape = SubResource("BoxShape3D_28qak")
+
+[node name="Sprite3D" type="Sprite3D" parent="WaterSpout/CollisionShape3D"]
+transform = Transform3D(2.31199, 0, 0, 0, 0.159122, 2.95225, 0, -2.35041, 0.199867, 0, 1.11051, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("10_ej1t5")
+
 [connection signal="firing" from="Player/Shooter" to="Player" method="_on_shooter_firing"]
 [connection signal="animation_finished" from="Player/MamaModel/AnimationPlayer" to="Player" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Player2/MamaModel/AnimationPlayer" to="Player" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Enemy" to="Enemy" method="_on_area_entered"]
+[connection signal="body_entered" from="WaterSpout" to="WaterSpout" method="_on_body_entered"]
+[connection signal="body_exited" from="WaterSpout" to="WaterSpout" method="_on_body_exited"]
 
 [editable path="Player/MamaModel"]
+[editable path="Player2/MamaModel"]

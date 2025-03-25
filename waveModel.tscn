@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0w8bdvk3hob6"]
+
+[ext_resource type="PackedScene" uid="uid://bhdr8180nhr2a" path="res://wave.glb" id="1_eehj1"]
+
+[node name="wave" instance=ExtResource("1_eehj1")]
