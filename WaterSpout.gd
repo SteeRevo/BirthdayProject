@@ -1,9 +1,12 @@
 extends Area3D
 
+@export var player_path : NodePath
+var player2 = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	%Player2.shooter.connect("firing", water_used)
+	player2 = get_node(player_path)
+	player2.shooter.connect("firing", water_used)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

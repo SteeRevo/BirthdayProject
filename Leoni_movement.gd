@@ -4,8 +4,8 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var fire = false
-@onready var model = $MamaModel
-@onready var model_ap = $MamaModel/AnimationPlayer
+@onready var model = $sister
+@onready var model_ap = $sister/AnimationPlayer
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var shooter = $Shooter
@@ -20,19 +20,29 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		"""if fire == true:
-			model_ap.play("Walk_Fire")
-			fire = false
+		if fire == true:
+			model_ap.play("Water")
+			fire == false
 		else:
-			model_ap.queue("Walk")"""
+			model_ap.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
-		"""if fire == true:
-			model_ap.play("fire")
+		if fire == true:
+			model_ap.play("Water")
+			fire == false
 		else:
-			model_ap.stop()
-			model_ap.queue("tpose")"""
+			model_ap.play("Idle")
 
 	move_and_slide()
 	model.rotation_degrees.y = $Shooter.rotation_degrees.y
+
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "Water":
+		fire = false
+
+
+func _on_shooter_firing():
+	fire = true

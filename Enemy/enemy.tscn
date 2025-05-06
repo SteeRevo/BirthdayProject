@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq1b0uqw763cu"]
+
+[ext_resource type="Script" path="res://Enemy/EnemyMovement.gd" id="1_hpyi2"]
+[ext_resource type="Script" path="res://enemy.gd" id="1_s08y5"]
+[ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="2_cullj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ppme"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uhpli"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_hpyi2")
+
+[node name="Enemy" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0757828, 0.810088, 0.298431)
+script = ExtResource("1_s08y5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enemy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.361106, 0)
+shape = SubResource("CapsuleShape3D_6ppme")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20428, 0.155866)
+shape = SubResource("CapsuleShape3D_uhpli")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0757828, 0.810088, 0.298431)
+texture = ExtResource("2_cullj")
+
+[connection signal="area_entered" from="Enemy" to="Enemy" method="_on_area_entered" flags=18]
+[connection signal="hit" from="Enemy" to="." method="_on_enemy_hit"]
