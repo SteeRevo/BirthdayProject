@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c0sjq3n0nlgv2" path="res://leoni/sister.tscn" id="7_sm85e"]
 [ext_resource type="Texture2D" uid="uid://b4s611si0paky" path="res://groundtex.PNG" id="8_3i705"]
 [ext_resource type="Script" path="res://WaterSpout.gd" id="8_6qmy5"]
-[ext_resource type="Texture2D" uid="uid://bbnf3fgvb4wyv" path="res://waterSpout.png" id="10_ej1t5"]
+[ext_resource type="PackedScene" uid="uid://bfpetcxrp3e2v" path="res://waterspout.tscn" id="11_3w8l0"]
 [ext_resource type="Texture2D" uid="uid://ba7m0bmo8rpur" path="res://tree.png" id="11_83ebt"]
 [ext_resource type="PackedScene" uid="uid://cq1b0uqw763cu" path="res://Enemy/enemy.tscn" id="12_wndtl"]
 
@@ -37,7 +37,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Arr
 size = Vector3(0.536987, 0.225098, 0.211426)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_28qak"]
-size = Vector3(1.98076, 1, 2.00249)
+size = Vector3(2, 3, 2.00249)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_la302"]
 
@@ -52,8 +52,8 @@ material = SubResource("StandardMaterial3D_0bnou")
 [node name="ShootingPractice" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.79936, 0.600853, 0, -0.600853, 0.79936, 0, 5.56511, 6.21309)
-fov = 49.9816
+transform = Transform3D(0.998242, -0.025187, 0.0536528, 0, 0.905217, 0.424949, -0.0592707, -0.424202, 0.903626, -1.85755, 5.34487, 10.2437)
+fov = 57.0724
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fyigu")
@@ -186,14 +186,11 @@ script = ExtResource("8_6qmy5")
 player_path = NodePath("../Player2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WaterSpout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0578384, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0578384, 1, 0)
 shape = SubResource("BoxShape3D_28qak")
 
-[node name="Sprite3D" type="Sprite3D" parent="NavigationRegion3D/WaterSpout/CollisionShape3D"]
-transform = Transform3D(2.31199, 0, 0, 0, 0.159122, 2.95225, 0, -2.35041, 0.199867, 0, 1.11051, 0)
-billboard = 1
-texture_filter = 0
-texture = ExtResource("10_ej1t5")
+[node name="Waterspout" parent="NavigationRegion3D/WaterSpout" instance=ExtResource("11_3w8l0")]
+transform = Transform3D(1.36269, 0, 0, 0, 3.30478, 0, 0, 0, 1.29421, 0.0994258, 0.092677, -0.00852728)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.03476, 0.999396, 0, -0.999396, -0.03476, 0, 0, 0, 1, -11.5481, 0, 0)

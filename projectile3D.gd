@@ -19,6 +19,8 @@ func _process(delta: float) -> void:
 func decay():
 	queue_free()
 
+"""
 
 func _on_area_entered(area: Area3D) -> void:
 	queue_free()
+"""
