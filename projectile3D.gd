@@ -2,8 +2,11 @@ extends Area3D
 var current_dir
 var spawn_set = false
 @onready var timer = $Timer
+var proj_name = ""
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	proj_name = "fireball"
 	timer.timeout.connect(decay)
 	
 func set_spawn(spawn_pos):

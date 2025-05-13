@@ -133,7 +133,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5678, 3.94265, -12.2417)
 texture = ExtResource("11_83ebt")
 
 [node name="Enemy" parent="NavigationRegion3D" instance=ExtResource("12_wndtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55094, 9.53674e-07, -3.27159)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+player_path = NodePath("../Player2")
+
+[node name="Enemy2" parent="NavigationRegion3D" instance=ExtResource("12_wndtl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75393, 9.53674e-07, -3.27159)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+player_path = NodePath("../Player2")
+
+[node name="Enemy3" parent="NavigationRegion3D" instance=ExtResource("12_wndtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77956, 9.53674e-07, -7.66214)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+player_path = NodePath("../Player2")
+
+[node name="Enemy4" parent="NavigationRegion3D" instance=ExtResource("12_wndtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.192259, 9.53674e-07, -3.27159)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+player_path = NodePath("../Player2")
+
+[node name="Enemy5" parent="NavigationRegion3D" instance=ExtResource("12_wndtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.77744, 9.53674e-07, -3.27159)
 floor_stop_on_slope = false
 floor_block_on_wall = false
 player_path = NodePath("../Player2")

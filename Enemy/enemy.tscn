@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Enemy/EnemyMovement.gd" id="1_hpyi2"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_s08y5"]
-[ext_resource type="Texture2D" uid="uid://dypabwpbld45q" path="res://icon.svg" id="2_cullj"]
+[ext_resource type="PackedScene" uid="uid://s53hgawue88f" path="res://Enemy/firenation.glb" id="3_tq7as"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ppme"]
 
@@ -26,9 +26,10 @@ shape = SubResource("CapsuleShape3D_uhpli")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0757828, 0.810088, 0.298431)
-texture = ExtResource("2_cullj")
+[node name="firenation" parent="." instance=ExtResource("3_tq7as")]
+transform = Transform3D(-0.152982, 0, -0.00441479, 0, 0.153046, 0, 0.00441479, 0, -0.152982, 0.0301627, 1.27224, 0.220241)
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="Enemy" to="Enemy" method="_on_area_entered" flags=18]
 [connection signal="hit" from="Enemy" to="." method="_on_enemy_hit"]
