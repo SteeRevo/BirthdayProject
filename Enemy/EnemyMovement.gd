@@ -50,9 +50,9 @@ func _on_enemy_hit(area):
 	if "proj_name" in area:
 		print(area)
 		timer.start()
-
 		if area.proj_name == "fireball" or area.proj_name == "wave": 
 			hit = true
+			$AudioStreamPlayer.play()
 			var tween = create_tween()
 			tween.tween_property(self, "position", global_position + area.get_global_transform().basis.z * 5, 0.25)
 			tween.tween_property($Sprite3D, "modulate", Color.RED, 0.25)
@@ -63,6 +63,8 @@ func _on_enemy_hit(area):
 			elif area.proj_name == "wave":
 				enemy_health -= 3
 				print(enemy_health)
+			if enemy_health <= 0:
+				visible = false
 			set_invincible()
 
 func set_invincible():
@@ -76,3 +78,9 @@ func on_tween_finished():
 	tween.tween_property($Sprite3D, "modulate", Color.WHITE, 0.1)
 	hit = false
 	
+
+
+
+func _on_audio_stream_player_finished():
+	if enemy_health <= 0:
+		queue_free()

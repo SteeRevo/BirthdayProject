@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 		if fire == true:
 			model_ap.play("Walk_Fire")
 			fire = false
+			
 		else:
 			model_ap.queue("Walk")
 	else:
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_shooter_firing():
 	fire = true
+	$AudioStreamPlayer.play()
 	
 	
 

@@ -9,6 +9,7 @@ var fire = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var shooter = $Shooter
+@onready var sfx = $AudioStreamPlayer
 
 
 func _physics_process(delta):
@@ -21,8 +22,9 @@ func _physics_process(delta):
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 		if fire == true:
+			
 			model_ap.play("Water")
-			fire == false
+			fire == false		
 		else:
 			model_ap.play("Walk")
 	else:
@@ -30,7 +32,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		if fire == true:
 			model_ap.play("Water")
-			fire == false
+			fire == false	
 		else:
 			model_ap.play("Idle")
 
@@ -47,3 +49,4 @@ func _on_animation_player_animation_finished(anim_name):
 
 func _on_shooter_firing():
 	fire = true
+	$AudioStreamPlayer.play()

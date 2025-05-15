@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cq1b0uqw763cu"]
+[gd_scene load_steps=7 format=3 uid="uid://cq1b0uqw763cu"]
 
 [ext_resource type="Script" path="res://Enemy/EnemyMovement.gd" id="1_hpyi2"]
 [ext_resource type="Script" path="res://enemy.gd" id="1_s08y5"]
 [ext_resource type="PackedScene" uid="uid://s53hgawue88f" path="res://Enemy/firenation.glb" id="3_tq7as"]
+[ext_resource type="AudioStream" uid="uid://cbn1bmy0idp2b" path="res://soldier_hit_sfx.mp3" id="4_y483x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ppme"]
 
@@ -30,6 +31,11 @@ shape = SubResource("CapsuleShape3D_uhpli")
 transform = Transform3D(-0.152982, 0, -0.00441479, 0, 0.153046, 0, 0.00441479, 0, -0.152982, 0.0301627, 1.27224, 0.220241)
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_y483x")
 
 [connection signal="area_entered" from="Enemy" to="Enemy" method="_on_area_entered" flags=18]
 [connection signal="hit" from="Enemy" to="." method="_on_enemy_hit"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
