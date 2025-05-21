@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cryl0v5f2vrga"]
+
+[ext_resource type="Script" path="res://dialogue/textbox.gd" id="1_qpplo"]
+[ext_resource type="Texture2D" uid="uid://bft1dg0ds7pir" path="res://dialogue/textbox.png" id="1_vcv5s"]
+[ext_resource type="FontFile" uid="uid://bjtiovlckd4u3" path="res://dialogue/Avatar Airbender.ttf" id="2_nssdj"]
+
+[node name="textbox" type="MarginContainer"]
+offset_right = 60.0
+offset_bottom = 39.0
+script = ExtResource("1_qpplo")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_vcv5s")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="MarginContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_nssdj")
+theme_override_font_sizes/font_size = 25
+vertical_alignment = 1
+
+[node name="LetterDisplayTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="LetterDisplayTimer" to="." method="_on_letter_display_timer_timeout"]

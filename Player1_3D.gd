@@ -7,6 +7,11 @@ const JUMP_VELOCITY = 4.5
 @onready var model_ap = $MamaModel/AnimationPlayer
 var fire = false
 
+@export var health = 1
+@export var max_health = 1
+
+signal health_changed
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -41,8 +46,15 @@ func _on_shooter_firing():
 	$AudioStreamPlayer.play()
 	
 	
+func take_damage():
+	health -= 1
+	health_changed.emit(health)
 
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "fire":
 		fire = false
+
+
+func _on_hitbox_area_entered(area):
+	print(area.name)

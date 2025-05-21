@@ -11,6 +11,11 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var shooter = $Shooter
 @onready var sfx = $AudioStreamPlayer
 
+@export var health = 1
+@export var max_health = 1
+
+signal health_changed
+
 
 func _physics_process(delta):
 
@@ -39,7 +44,9 @@ func _physics_process(delta):
 	move_and_slide()
 	model.rotation_degrees.y = $Shooter.rotation_degrees.y
 
-
+func take_damage():
+	health -= 1
+	health_changed.emit(health)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "Water":
@@ -50,3 +57,7 @@ func _on_animation_player_animation_finished(anim_name):
 func _on_shooter_firing():
 	fire = true
 	$AudioStreamPlayer.play()
+
+
+func _on_hitbox_area_entered(area):
+	print(area.name)
