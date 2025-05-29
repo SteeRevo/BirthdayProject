@@ -12,14 +12,16 @@ var text_box_position: Vector2
 var is_dialogue_active = false
 var can_advance_line = false
 var canvasNode
+var _sig
 
-func start_dialogue(position: Vector2, lines: Array[String], canvas: Control):
+func start_dialogue(position: Vector2, lines: Array[String], canvas: Control, sig):
 	if is_dialogue_active:
 		return
 	canvasNode = canvas
 	dialog_lines = lines
 	text_box_position = position
 	_show_text_box()
+	_sig = sig
 	
 	is_dialogue_active = true
 	
@@ -42,5 +44,7 @@ func _unhandled_input(event):
 		if current_line_index >= dialog_lines.size():
 			is_dialogue_active = false
 			current_line_index = 0
+			if _sig != null:
+				SignalManager.emit(_sig)
 			return
 		_show_text_box()

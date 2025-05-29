@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dy30y0hpqni5b"
+path="res://.godot/imported/Iroh's Tsungi Horn.mp3-41fc6fd8a23c0ba418e49725fea84e50.mp3str"
+
+[deps]
+
+source_file="res://dialogue/Iroh's Tsungi Horn.mp3"
+dest_files=["res://.godot/imported/Iroh's Tsungi Horn.mp3-41fc6fd8a23c0ba418e49725fea84e50.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

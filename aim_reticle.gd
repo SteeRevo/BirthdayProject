@@ -11,18 +11,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var input_dir := Input.get_vector("Player2Left", "Player2Right", "Player2Down", "Player2Up")
-	var direction :=  Vector2(input_dir.x, input_dir.y).normalized()
-	if direction != Vector2.ZERO:
-		rotation_degrees.y = rad_to_deg(direction.angle()) + 90
-		if !reloading:
-			var p = projectile.instantiate()
-			owner.add_child(p)
-			p.current_dir = $Sprite3D.global_rotation
-			p.set_spawn($Sprite3D.global_position)
-			timer.start()
-			reloading = true
-			emit_signal("firing")
+	if get_parent().in_dialogue == false:
+		var input_dir := Input.get_vector("Player2Left", "Player2Right", "Player2Down", "Player2Up")
+		var direction :=  Vector2(input_dir.x, input_dir.y).normalized()
+		if direction != Vector2.ZERO:
+			rotation_degrees.y = rad_to_deg(direction.angle()) + 90
+			if !reloading:
+				var p = projectile.instantiate()
+				owner.add_child(p)
+				p.current_dir = $Sprite3D.global_rotation
+				p.set_spawn($Sprite3D.global_position)
+				timer.start()
+				reloading = true
+				emit_signal("firing")
 		
 func reload_start():
 	reloading = false

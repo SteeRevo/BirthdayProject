@@ -1,13 +1,37 @@
 extends Node3D
 
 @onready var canvas = $CanvasLayer/Control
+@onready var player1 = $NavigationRegion3D/Player
+@onready var player2 = $NavigationRegion3D/Player2
+@onready var textboxPos = $CanvasLayer/Control/TextboxPos
+@onready var waterspout1 = $NavigationRegion3D/WaterSpout
+@onready var waterspout2 = $NavigationRegion3D/WaterSpout2
+@onready var waterspout3 = $NavigationRegion3D/WaterSpout3
+@onready var enemy_spawner1 = $NavigationRegion3D/EnemySpawner
+@onready var cutscenePlayer = $NavigationRegion3D/CutscenePlayer
 
 const lines: Array[String] = [
-	"hello there",
-	"This is the avatar birthday game",
+	"Hurry Leoni, we have to make it to the harbor",
+	"The Fire Nation can't know...",
+	"That you're a waterbender!"
 ]
 
-func _unhandled_input(event):
-	if event.is_action_pressed("DialogueAdvance"):
-		print("dialogue")
-		#DialogueManager.start_dialogue(Vector2(150, 70), lines, canvas)
+func _ready():
+	SignalManager.connect("intro_done", start_combat)
+	player1.in_dialogue = true
+	player2.in_dialogue = true
+	cutscenePlayer.play("walk_to_spot")
+	
+		
+func start_combat():
+	print("combat_start")
+	player1.in_dialogue = false
+	player2.in_dialogue = false
+	waterspout1.set_active()
+	enemy_spawner1.spawn_enemy()
+	
+
+
+func _on_cutscene_player_animation_finished(anim_name):
+	if anim_name == "walk_to_spot":
+		DialogueManager.start_dialogue(textboxPos.global_position, lines, canvas, "intro_done")

@@ -7,7 +7,11 @@ var max_hearts = 1
 
 func set_hearts(value):
 	health = clamp(value, 0, max_hearts)
-	
+	if Player.name == "Player":
+		$Label.text = "Mama: " + str(health)
+	if Player.name == "Player2":
+		$Label.text = "Leoni: " + str(health)
+
 func set_max_hearts(value):
 	max_hearts = max(value, 1)
 	if Player.name == "Player":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://tf2o6bkedbwe"]
+[gd_scene load_steps=32 format=3 uid="uid://tf2o6bkedbwe"]
 
 [ext_resource type="Script" path="res://Player1_3D.gd" id="1_ek1k8"]
 [ext_resource type="Script" path="res://shooting_practice.gd" id="1_gns1v"]
@@ -10,12 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://c0sjq3n0nlgv2" path="res://leoni/sister.tscn" id="7_sm85e"]
 [ext_resource type="AudioStream" uid="uid://bh8v57kcns2fg" path="res://fireball-whoosh-1-179125.mp3" id="7_w7h7v"]
 [ext_resource type="Texture2D" uid="uid://b4s611si0paky" path="res://groundtex.PNG" id="8_3i705"]
-[ext_resource type="Script" path="res://WaterSpout.gd" id="8_6qmy5"]
 [ext_resource type="AudioStream" uid="uid://br3n66xovy0ou" path="res://wave_sfx.mp3" id="10_1feva"]
-[ext_resource type="PackedScene" uid="uid://bfpetcxrp3e2v" path="res://waterspout.tscn" id="11_3w8l0"]
 [ext_resource type="Texture2D" uid="uid://ba7m0bmo8rpur" path="res://tree.png" id="11_83ebt"]
-[ext_resource type="PackedScene" uid="uid://cq1b0uqw763cu" path="res://Enemy/enemy.tscn" id="12_wndtl"]
+[ext_resource type="PackedScene" uid="uid://bhqy5q05d4j6" path="res://water_spout.tscn" id="12_vlh0m"]
 [ext_resource type="AudioStream" uid="uid://btwoday632iqq" path="res://Avatar Soundtracks_ Agni Kai [Extended_trim].mp3" id="13_3aqlj"]
+[ext_resource type="Script" path="res://EnemySpawner.gd" id="14_40q37"]
 [ext_resource type="Script" path="res://HealthUI.gd" id="17_hmtsv"]
 [ext_resource type="FontFile" uid="uid://bjtiovlckd4u3" path="res://dialogue/Avatar Airbender.ttf" id="18_6d3kn"]
 
@@ -44,9 +43,6 @@ size = Vector3(0.536987, 0.225098, 0.211426)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b4aos"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_28qak"]
-size = Vector3(2, 3, 2.00249)
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_la302"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u0un"]
@@ -57,12 +53,165 @@ albedo_texture = ExtResource("8_3i705")
 [sub_resource type="BoxMesh" id="BoxMesh_2gpvw"]
 material = SubResource("StandardMaterial3D_0bnou")
 
+[sub_resource type="Animation" id="Animation_dldp5"]
+resource_name = "walk_to_spot"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.372532, 0.965701, 3.37107), Vector3(-0.372532, 0.965701, 0.086242)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Player2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-3.44603, 0, 2.86362), Vector3(-3.44603, 0, 0.0409315)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Player")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"stop_walk"
+}, {
+"args": [],
+"method": &"play_talk"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Player2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.998917),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"stop_walk"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Player/MamaModel:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -1.5708, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%Player2/sister:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -4.8014, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pfxvr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.372532, 0.965701, 3.37107)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Player2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3.44603, 0, 2.86362)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Player/MamaModel:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%Player2/sister:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qvuw6"]
+_data = {
+"RESET": SubResource("Animation_pfxvr"),
+"walk_to_spot": SubResource("Animation_dldp5")
+}
+
 [node name="ShootingPractice" type="Node3D"]
 script = ExtResource("1_gns1v")
 
+[node name="GameState" type="Node" parent="."]
+
+[node name="Intro" type="Node" parent="GameState"]
+
+[node name="Combat" type="Node" parent="GameState"]
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.998242, -0.025187, 0.0536528, 0, 0.905217, 0.424949, -0.0592707, -0.424202, 0.903626, -1.85755, 5.34487, 10.2437)
-fov = 57.0724
+current = true
+fov = 56.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_fyigu")
@@ -142,7 +291,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5678, 3.94265, -12.2417)
 texture = ExtResource("11_83ebt")
 
 [node name="Player" type="CharacterBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.965701, 0)
+unique_name_in_owner = true
+transform = Transform3D(0.999913, 0, -0.0131768, 0, 1, 0, 0.0131768, 0, 0.999913, -0.372532, 0.965701, 3.37107)
 collision_layer = 2
 script = ExtResource("1_ek1k8")
 health = 5
@@ -168,21 +318,24 @@ texture = ExtResource("1_lf1xq")
 [node name="Timer" type="Timer" parent="NavigationRegion3D/Player/Shooter"]
 
 [node name="MamaModel" parent="NavigationRegion3D/Player" instance=ExtResource("4_0p2sc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.911756, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, -0.911756, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NavigationRegion3D/Player"]
 stream = ExtResource("7_w7h7v")
 
 [node name="Hitbox" type="Area3D" parent="NavigationRegion3D/Player"]
 transform = Transform3D(1.45615, 0, 0, 0, 1.45615, 0, 0, 0, 1.45615, 0, 0.212365, 0)
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Player/Hitbox"]
 transform = Transform3D(0.735381, 0, 0, 0, 0.735381, 0, 0, 0, 0.735381, 0, 0.0437776, 0)
 shape = SubResource("CapsuleShape3D_b4aos")
 
+[node name="InvinTimer" type="Timer" parent="NavigationRegion3D/Player"]
+
 [node name="Player2" type="CharacterBody3D" parent="NavigationRegion3D"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30129, 0, 0)
+transform = Transform3D(0.994774, 0, 0.102098, 0, 1, 0, -0.102098, 0, 0.994774, -3.44603, 0, 2.86362)
 script = ExtResource("5_kb17c")
 health = 5
 max_health = 5
@@ -196,6 +349,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3159, 0.545988)
 script = ExtResource("6_brimx")
 
 [node name="sister" parent="NavigationRegion3D/Player2" instance=ExtResource("7_sm85e")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NavigationRegion3D/Player2"]
 stream = ExtResource("10_1feva")
@@ -207,33 +361,29 @@ pitch_scale = 1.25
 transform = Transform3D(0.981702, 0, 0, 0, 0.981702, 0, 0, 0, 0.981702, 0.0011003, 1.11013, 0)
 shape = SubResource("CapsuleShape3D_b4aos")
 
-[node name="WaterSpout" type="Area3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.54254, 0, -4.53678)
-script = ExtResource("8_6qmy5")
-player_path = NodePath("../Player2")
+[node name="InvinTimer" type="Timer" parent="NavigationRegion3D/Player2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/WaterSpout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0578384, 1, 0)
-shape = SubResource("BoxShape3D_28qak")
+[node name="WaterSpout" parent="NavigationRegion3D" instance=ExtResource("12_vlh0m")]
 
-[node name="Waterspout" parent="NavigationRegion3D/WaterSpout" instance=ExtResource("11_3w8l0")]
-transform = Transform3D(1.36269, 0, 0, 0, 3.30478, 0, 0, 0, 1.29421, 0.0994258, 0.092677, -0.00852728)
+[node name="WaterSpout2" parent="NavigationRegion3D" instance=ExtResource("12_vlh0m")]
+
+[node name="WaterSpout3" parent="NavigationRegion3D" instance=ExtResource("12_vlh0m")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(-0.03476, 0.999396, 0, -0.999396, -0.03476, 0, 0, 0, 1, -11.5481, 0, 0)
+transform = Transform3D(-0.0346114, 0.995125, 0.0923532, -0.999396, -0.03476, 1.2692e-09, 0.0032102, -0.0922974, 0.995726, -8.04194, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_la302")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.0347033, -0.997767, 0.0570761, -0.999396, -0.03476, 0, 0.00198396, -0.0570416, -0.99837, 13.7841, 0, 0)
+transform = Transform3D(0.0347033, -0.997767, 0.0570761, -0.999396, -0.03476, 0, 0.00198396, -0.0570416, -0.99837, 5.95966, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D2"]
 transform = Transform3D(1, -1.50612e-09, 0, 2.21917e-09, 1, 0, -2.32831e-10, 3.72529e-09, 1, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_la302")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="NavigationRegion3D"]
-transform = Transform3D(0.000266979, -0.00763664, 1.64764, -0.999568, -0.0345872, 0, 0.0347649, -0.994398, -0.0126533, 0.12593, 0, 16.4964)
+transform = Transform3D(0.000266933, -0.00767479, 0.99997, -0.999396, -0.03476, -3.67636e-09, 0.0347589, -0.999366, -0.00767943, 0.12593, 0, 13.2666)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D3"]
 transform = Transform3D(2, 6.29574e-06, 0.000931868, 6.20633e-06, 1.99982, -0.026931, -0.000931869, 0.026931, 1.99982, -0.298014, 8.61257, 0.0399667)
@@ -251,9 +401,16 @@ transform = Transform3D(202.384, 0, 0, 0, 3.88993, 0, 0, 0, 190.257, 0, -2.06233
 material_override = SubResource("StandardMaterial3D_4u0un")
 mesh = SubResource("BoxMesh_2gpvw")
 
-[node name="CharacterBody3D" parent="NavigationRegion3D" instance=ExtResource("12_wndtl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68833, 0, 0)
-player_path = NodePath("../Player2")
+[node name="EnemySpawner" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5564, 0.882551, -8.91632)
+script = ExtResource("14_40q37")
+
+[node name="Timer" type="Timer" parent="NavigationRegion3D/EnemySpawner"]
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="NavigationRegion3D"]
+libraries = {
+"": SubResource("AnimationLibrary_qvuw6")
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_3aqlj")
@@ -267,6 +424,9 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 319.0
 offset_bottom = 179.0
+
+[node name="TextboxPos" type="Node2D" parent="CanvasLayer/Control"]
+position = Vector2(155, 173)
 
 [node name="HealthUI" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Player")]
 layout_mode = 3
@@ -310,11 +470,12 @@ text = "Health"
 [connection signal="firing" from="NavigationRegion3D/Player/Shooter" to="NavigationRegion3D/Player" method="_on_shooter_firing"]
 [connection signal="animation_finished" from="NavigationRegion3D/Player/MamaModel/AnimationPlayer" to="NavigationRegion3D/Player" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="NavigationRegion3D/Player/Hitbox" to="NavigationRegion3D/Player" method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="NavigationRegion3D/Player/InvinTimer" to="NavigationRegion3D/Player" method="_on_invin_timer_timeout"]
 [connection signal="firing" from="NavigationRegion3D/Player2/Shooter" to="NavigationRegion3D/Player2" method="_on_shooter_firing"]
 [connection signal="animation_finished" from="NavigationRegion3D/Player2/sister/AnimationPlayer" to="NavigationRegion3D/Player2" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="NavigationRegion3D/Player2/Hitbox" to="NavigationRegion3D/Player2" method="_on_hitbox_area_entered"]
-[connection signal="body_entered" from="NavigationRegion3D/WaterSpout" to="NavigationRegion3D/WaterSpout" method="_on_body_entered"]
-[connection signal="body_exited" from="NavigationRegion3D/WaterSpout" to="NavigationRegion3D/WaterSpout" method="_on_body_exited"]
+[connection signal="timeout" from="NavigationRegion3D/Player2/InvinTimer" to="NavigationRegion3D/Player2" method="_on_invin_timer_timeout"]
+[connection signal="animation_finished" from="NavigationRegion3D/CutscenePlayer" to="." method="_on_cutscene_player_animation_finished"]
 
 [editable path="NavigationRegion3D/Player/MamaModel"]
 [editable path="NavigationRegion3D/Player2/sister"]

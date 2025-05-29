@@ -66,6 +66,10 @@ func _on_enemy_hit(area):
 			if enemy_health <= 0:
 				visible = false
 			set_invincible()
+	elif area.name == "Hitbox":
+		var tween = create_tween()
+		tween.tween_property(self, "position", global_position - self.get_global_transform().basis.z * 5, 0.25)
+		tween.connect("finished", on_tween_finished)
 
 func set_invincible():
 	$Enemy/CollisionShape3D.set_deferred("disabled", true)
