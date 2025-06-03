@@ -14,6 +14,7 @@ var fire = false
 @onready var hitbox = $Hitbox
 
 signal health_changed
+signal died
 var in_dialogue = false
 
 
@@ -55,7 +56,10 @@ func take_damage():
 	health_changed.emit(health)
 	invinTimer.start()
 	$MamaModel/AnimationPlayer.play("invin")
-	hitbox.monitorable = false
+	hitbox.set_deferred("monitorable", false)
+	hitbox.set_deferred("monitoring", false)
+	if health <= 0:
+		emit_signal("died")
 	
 func play_walk():
 	$MamaModel/AnimationPlayer.play("Walk")
@@ -77,4 +81,5 @@ func _on_hitbox_area_entered(area):
 		take_damage()
 
 func _on_invin_timer_timeout():
-	hitbox.monitorable = true
+	hitbox.set_deferred("monitorable", true)
+	hitbox.set_deferred("monitoring", true)

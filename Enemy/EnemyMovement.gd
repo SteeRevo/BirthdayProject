@@ -14,9 +14,10 @@ var ROTATION_WEIGHT = 10
 var enemy_health = 3
 @onready var timer = $Timer
 
+signal enemy_death()
+
 func _ready():
 	# Get player node
-	player = get_node(player_path)
 	timer.timeout.connect(end_invincible)
 
 	# Assuming NavigationAgent3D is a child node; adjust path if necessary
@@ -47,15 +48,14 @@ func _process(delta):
 
 
 func _on_enemy_hit(area):
+	print(area.name)
 	if "proj_name" in area:
-		print(area)
 		timer.start()
 		if area.proj_name == "fireball" or area.proj_name == "wave": 
 			hit = true
 			$AudioStreamPlayer.play()
 			var tween = create_tween()
 			tween.tween_property(self, "position", global_position + area.get_global_transform().basis.z * 5, 0.25)
-			tween.tween_property($Sprite3D, "modulate", Color.RED, 0.25)
 			tween.connect("finished", on_tween_finished)
 			if area.proj_name == "fireball":
 				enemy_health -= 1
@@ -79,7 +79,6 @@ func end_invincible():
 
 func on_tween_finished():
 	var tween = create_tween()
-	tween.tween_property($Sprite3D, "modulate", Color.WHITE, 0.1)
 	hit = false
 	
 
@@ -87,4 +86,5 @@ func on_tween_finished():
 
 func _on_audio_stream_player_finished():
 	if enemy_health <= 0:
+		emit_signal("enemy_death")
 		queue_free()

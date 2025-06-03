@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var max_health = 1
 
 signal health_changed
+signal died
 @onready var invinTimer = $InvinTimer
 
 var in_dialogue = false
@@ -54,8 +55,11 @@ func take_damage():
 	health_changed.emit(health)
 	invinTimer.start()
 	$sister/AnimationPlayer.play("invin")
-	hitbox.monitorable = false
+	hitbox.set_deferred("monitorable", false)
+	hitbox.set_deferred("monitoring", false) 
 	print(health)
+	if health <= 0:
+		emit_signal("died")
 	
 func play_walk():
 	$sister/AnimationPlayer.play("Walk")
@@ -81,4 +85,5 @@ func _on_hitbox_area_entered(area):
 
 
 func _on_invin_timer_timeout():
-	hitbox.monitorable = true
+	hitbox.set_deferred("monitorable", true)
+	hitbox.set_deferred("monitoring", true) 
