@@ -4,7 +4,9 @@ extends Node3D
 @onready var player_path = %Player2
 @onready var player_path2 = %Player
 @onready var timer = $Timer
+signal kill_count
 var enemy_amt = 0
+var active = true
 
 func spawn_enemy():
 	var e = enemy.instantiate()
@@ -27,3 +29,5 @@ func _on_timer_timeout():
 func decrease_enemy_amt():
 	enemy_amt -= 1
 	timer.start()
+	emit_signal("kill_count")
+	

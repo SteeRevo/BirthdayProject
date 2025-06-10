@@ -12,7 +12,11 @@ extends Node3D
 @onready var cutscenePlayer = $NavigationRegion3D/CutscenePlayer
 @onready var navigation = $NavigationRegion3D
 @onready var restart = $CanvasLayer/Restart
+@onready var defeatedLabel = $CanvasLayer/Defeated
+@onready var canvasAnimation = $CanvasLayer/AnimationPlayer
 var gameover = false
+
+var enemy_killed = 0
 
 const lines: Array[String] = [
 	"Hurry Leoni, we have to make it to the harbor",
@@ -20,11 +24,18 @@ const lines: Array[String] = [
 	"That you're a waterbender!"
 ]
 
+const lines2: Array[String] = [
+	"Hurry Mama, we gotta leave now",
+]
+
 func _ready():
 	SignalManager.connect("intro_done", start_combat)
 	player1.in_dialogue = true
 	player2.in_dialogue = true
 	cutscenePlayer.play("walk_to_spot")
+	waterspout1.connect("spout_inactive", set_spout)
+	waterspout2.connect("spout_inactive", set_spout)
+	waterspout3.connect("spout_inactive", set_spout)
 	
 		
 func start_combat():
@@ -52,3 +63,31 @@ func _on_player_2_died():
 	get_tree().paused = true
 	restart.visible = true
 	restart.gameover = true
+	
+func set_spout(spout_num):
+	print("spout num: " + str(spout_num))
+	if spout_num == 1 and waterspout2.active == false and waterspout3.active == false:
+		waterspout2.set_active()
+	elif spout_num == 2 and waterspout1.active == false and waterspout3.active == false:
+		waterspout3.set_active()
+	elif spout_num == 3 and waterspout2.active == false and waterspout1.active == false:
+		waterspout1.set_active()
+		
+func enemy_killed_increase():
+	enemy_killed += 1
+	print(enemy_killed)
+	defeatedLabel.update_kill_count(enemy_killed)
+	if enemy_killed == 20:
+		print("first_level_Complete")
+		enemy_spawner1.queue_free()
+		enemy_spawner2.queue_free()
+		DialogueManager.start_dialogue(textboxPos.global_position, lines2, canvas, null)
+		canvasAnimation.play("transition")
+
+
+func _on_enemy_spawner_kill_count():
+	enemy_killed_increase()
+
+
+func _on_enemy_spawner_2_kill_count():
+	enemy_killed_increase()

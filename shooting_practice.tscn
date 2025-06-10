@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://tf2o6bkedbwe"]
+[gd_scene load_steps=37 format=3 uid="uid://tf2o6bkedbwe"]
 
 [ext_resource type="Script" path="res://Player1_3D.gd" id="1_ek1k8"]
 [ext_resource type="Script" path="res://shooting_practice.gd" id="1_gns1v"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://HealthUI.gd" id="17_hmtsv"]
 [ext_resource type="FontFile" uid="uid://bjtiovlckd4u3" path="res://dialogue/Avatar Airbender.ttf" id="18_6d3kn"]
 [ext_resource type="Script" path="res://Restart.gd" id="18_88w1x"]
+[ext_resource type="Script" path="res://Defeated.gd" id="18_tvdno"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3kqdw"]
 sky_top_color = Color(0.992188, 0.667969, 0.191406, 1)
@@ -25,13 +26,13 @@ sky_horizon_color = Color(0.996094, 0.910156, 0.441406, 1)
 ground_bottom_color = Color(0.992188, 0.832031, 0.378906, 1)
 ground_horizon_color = Color(0.992188, 0.820313, 0.363281, 1)
 
-[sub_resource type="Sky" id="Sky_ktt87"]
+[sub_resource type="Sky" id="Sky_mqxhq"]
 sky_material = SubResource("ProceduralSkyMaterial_3kqdw")
 
 [sub_resource type="Environment" id="Environment_fyigu"]
 background_mode = 2
 background_color = Color(0.564706, 0.670588, 0.976471, 1)
-sky = SubResource("Sky_ktt87")
+sky = SubResource("Sky_mqxhq")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_lc38d"]
 vertices = PackedVector3Array(-88.6922, 0.242703, -94.6283, -100.692, 0.242703, -94.6283, -100.692, 0.242703, -82.8783, -88.6922, 0.242703, -94.6283, -100.692, 0.242703, -82.8783, -100.692, 0.242703, -71.1283, -76.6922, 0.242703, -94.6283, -88.6922, 0.242703, -94.6283, -100.692, 0.242703, -71.1283, -100.692, 0.242703, -59.3783, -4.44222, 0.242703, -0.128311, -4.44222, 0.242703, -0.378311, -10.6922, 0.242703, -94.6283, -16.6922, 0.242703, -94.6283, -64.6922, 0.242703, -94.6283, -76.6922, 0.242703, -94.6283, -100.692, 0.242703, -59.3783, -100.692, 0.242703, -47.3783, -100.692, 0.242703, -23.8783, -100.692, 0.242703, -12.1283, -4.44222, 0.242703, -0.128311, -28.6922, 0.242703, -94.6283, -40.6922, 0.242703, -94.6283, -52.6922, 0.242703, -94.6283, -64.6922, 0.242703, -94.6283, -100.692, 0.242703, -47.3783, -100.692, 0.242703, -35.6283, -100.692, 0.242703, -12.1283, -100.692, 0.242703, -0.128311, -4.44222, 0.242703, -0.128311, -40.6922, 0.242703, -94.6283, -52.6922, 0.242703, -94.6283, -100.692, 0.242703, -35.6283, -100.692, 0.242703, -23.8783, -4.44222, 0.242703, -0.128311, -16.6922, 0.242703, -94.6283, -28.6922, 0.242703, -94.6283, -4.44222, 0.242703, -0.378311, -4.44222, 0.242703, -94.6283, -10.6922, 0.242703, -94.6283, -2.69222, 0.242703, -0.878311, -2.19222, 0.242703, -0.128311, -1.19222, 0.242703, -0.128311, -0.692223, 0.242703, -0.878311, 1.05778, 0.242703, -94.6283, -4.44222, 0.242703, -94.6283, -4.44222, 0.242703, -94.6283, -3.94222, 0.242703, -0.878311, -2.69222, 0.242703, -0.878311, -4.44222, 0.242703, -94.6283, -4.44222, 0.242703, -0.378311, -3.94222, 0.242703, -0.878311, -0.692223, 0.242703, -0.878311, 1.05778, 0.242703, -0.628311, 1.05778, 0.242703, -94.6283, 100.808, 0.242703, -82.8783, 100.808, 0.242703, -94.6283, 94.5578, 0.242703, -94.6283, 100.808, 0.242703, -82.8783, 94.5578, 0.242703, -94.6283, 88.3078, 0.242703, -94.6283, 100.808, 0.242703, -82.8783, 88.3078, 0.242703, -94.6283, 82.0578, 0.242703, -94.6283, 100.808, 0.242703, -82.8783, 82.0578, 0.242703, -94.6283, 75.8078, 0.242703, -94.6283, 100.808, 0.242703, -82.8783, 75.8078, 0.242703, -94.6283, 69.5578, 0.242703, -94.6283, 100.808, 0.242703, -71.1283, 100.808, 0.242703, -82.8783, 69.5578, 0.242703, -94.6283, 63.3078, 0.242703, -94.6283, 19.5578, 0.242703, -94.6283, 13.3078, 0.242703, -94.6283, 1.30778, 0.242703, -0.128311, 100.808, 0.242703, -23.8783, 100.808, 0.242703, -35.6283, 100.808, 0.242703, -71.1283, 63.3078, 0.242703, -94.6283, 57.0578, 0.242703, -94.6283, 100.808, 0.242703, -71.1283, 57.0578, 0.242703, -94.6283, 50.8078, 0.242703, -94.6283, 100.808, 0.242703, -71.1283, 50.8078, 0.242703, -94.6283, 44.5578, 0.242703, -94.6283, 100.808, 0.242703, -59.3783, 100.808, 0.242703, -71.1283, 44.5578, 0.242703, -94.6283, 38.3078, 0.242703, -94.6283, 1.30778, 0.242703, -0.128311, 100.808, 0.242703, -0.128311, 100.808, 0.242703, -12.1283, 100.808, 0.242703, -59.3783, 38.3078, 0.242703, -94.6283, 32.0578, 0.242703, -94.6283, 100.808, 0.242703, -59.3783, 32.0578, 0.242703, -94.6283, 25.8078, 0.242703, -94.6283, 100.808, 0.242703, -59.3783, 25.8078, 0.242703, -94.6283, 19.5578, 0.242703, -94.6283, 100.808, 0.242703, -47.3783, 100.808, 0.242703, -35.6283, 100.808, 0.242703, -47.3783, 19.5578, 0.242703, -94.6283, 7.05778, 0.242703, -94.6283, 1.05778, 0.242703, -94.6283, 1.05778, 0.242703, -0.628311, 7.05778, 0.242703, -94.6283, 1.05778, 0.242703, -0.628311, 1.30778, 0.242703, -0.128311, 13.3078, 0.242703, -94.6283, 1.30778, 0.242703, -0.128311, 100.808, 0.242703, -12.1283, 100.808, 0.242703, -23.8783, -100.692, 0.242703, 82.6217, -100.692, 0.242703, 94.6217, -88.6922, 0.242703, 94.6217, -100.692, 0.242703, 70.8717, -100.692, 0.242703, 82.6217, -88.6922, 0.242703, 94.6217, -100.692, 0.242703, 70.8717, -88.6922, 0.242703, 94.6217, -76.6922, 0.242703, 94.6217, -100.692, 0.242703, 58.8717, -10.6922, 0.242703, 94.6217, -4.44222, 0.242703, 0.371689, -4.44222, 0.242703, -0.128311, -16.6922, 0.242703, 94.6217, -100.692, 0.242703, 58.8717, -76.6922, 0.242703, 94.6217, -64.6922, 0.242703, 94.6217, -100.692, 0.242703, 47.1217, -4.44222, 0.242703, -0.128311, -100.692, 0.242703, 11.6217, -100.692, 0.242703, 23.3717, -40.6922, 0.242703, 94.6217, -28.6922, 0.242703, 94.6217, -100.692, 0.242703, 47.1217, -64.6922, 0.242703, 94.6217, -52.6922, 0.242703, 94.6217, -100.692, 0.242703, 35.1217, -4.44222, 0.242703, -0.128311, -100.692, 0.242703, -0.128311, -100.692, 0.242703, 11.6217, -100.692, 0.242703, 35.1217, -52.6922, 0.242703, 94.6217, -40.6922, 0.242703, 94.6217, -100.692, 0.242703, 23.3717, -28.6922, 0.242703, 94.6217, -16.6922, 0.242703, 94.6217, -4.44222, 0.242703, -0.128311, -10.6922, 0.242703, 94.6217, -4.44222, 0.242703, 94.6217, -4.44222, 0.242703, 0.371689, -0.692223, 0.242703, 0.871689, -1.19222, 0.242703, -0.128311, -2.19222, 0.242703, -0.128311, -2.69222, 0.242703, 0.871689, -4.44222, 0.242703, 94.6217, 1.05778, 0.242703, 94.6217, -2.69222, 0.242703, 0.871689, -3.94222, 0.242703, 0.871689, -4.44222, 0.242703, 94.6217, -3.94222, 0.242703, 0.871689, -4.44222, 0.242703, 0.371689, -4.44222, 0.242703, 94.6217, 1.05778, 0.242703, 94.6217, 1.05778, 0.242703, 0.621689, -0.692223, 0.242703, 0.871689, 94.5578, 0.242703, 94.6217, 100.808, 0.242703, 94.6217, 100.808, 0.242703, 82.6217, 88.3078, 0.242703, 94.6217, 94.5578, 0.242703, 94.6217, 100.808, 0.242703, 82.6217, 82.0578, 0.242703, 94.6217, 88.3078, 0.242703, 94.6217, 100.808, 0.242703, 82.6217, 75.8078, 0.242703, 94.6217, 82.0578, 0.242703, 94.6217, 100.808, 0.242703, 82.6217, 69.5578, 0.242703, 94.6217, 75.8078, 0.242703, 94.6217, 100.808, 0.242703, 82.6217, 69.5578, 0.242703, 94.6217, 100.808, 0.242703, 82.6217, 100.808, 0.242703, 70.8717, 63.3078, 0.242703, 94.6217, 100.808, 0.242703, 23.3717, 100.808, 0.242703, 11.6217, 1.30778, 0.242703, -0.128311, 57.0578, 0.242703, 94.6217, 63.3078, 0.242703, 94.6217, 100.808, 0.242703, 70.8717, 50.8078, 0.242703, 94.6217, 57.0578, 0.242703, 94.6217, 100.808, 0.242703, 70.8717, 44.5578, 0.242703, 94.6217, 50.8078, 0.242703, 94.6217, 100.808, 0.242703, 70.8717, 44.5578, 0.242703, 94.6217, 100.808, 0.242703, 70.8717, 100.808, 0.242703, 58.8717, 38.3078, 0.242703, 94.6217, 100.808, 0.242703, 11.6217, 100.808, 0.242703, -0.128311, 1.30778, 0.242703, -0.128311, 32.0578, 0.242703, 94.6217, 38.3078, 0.242703, 94.6217, 100.808, 0.242703, 58.8717, 25.8078, 0.242703, 94.6217, 32.0578, 0.242703, 94.6217, 100.808, 0.242703, 58.8717, 19.5578, 0.242703, 94.6217, 25.8078, 0.242703, 94.6217, 100.808, 0.242703, 58.8717, 100.808, 0.242703, 47.1217, 19.5578, 0.242703, 94.6217, 100.808, 0.242703, 47.1217, 100.808, 0.242703, 35.1217, 1.05778, 0.242703, 0.621689, 1.05778, 0.242703, 94.6217, 7.05778, 0.242703, 94.6217, 1.05778, 0.242703, 0.621689, 7.05778, 0.242703, 94.6217, 13.3078, 0.242703, 94.6217, 1.30778, 0.242703, -0.128311, 1.05778, 0.242703, 0.621689, 13.3078, 0.242703, 94.6217, 19.5578, 0.242703, 94.6217, 100.808, 0.242703, 35.1217, 100.808, 0.242703, 23.3717)
@@ -49,10 +50,10 @@ size = Vector3(0.536987, 0.225098, 0.211426)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u0un"]
 albedo_texture = ExtResource("8_3i705")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0bnou"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcd18"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2gpvw"]
-material = SubResource("StandardMaterial3D_0bnou")
+material = SubResource("StandardMaterial3D_fcd18")
 
 [sub_resource type="Animation" id="Animation_pfxvr"]
 length = 0.001
@@ -200,14 +201,55 @@ _data = {
 "walk_to_spot": SubResource("Animation_dldp5")
 }
 
+[sub_resource type="Animation" id="Animation_yjq5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-357, -11)]
+}
+
+[sub_resource type="Animation" id="Animation_miuaw"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-357, -11), Vector2(-28, -11)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q6bfn"]
+_data = {
+"RESET": SubResource("Animation_yjq5c"),
+"transition": SubResource("Animation_miuaw")
+}
+
 [node name="ShootingPractice" type="Node3D"]
 script = ExtResource("1_gns1v")
+
+[node name="WaterSpawnTimer" type="Timer" parent="."]
 
 [node name="GameState" type="Node" parent="."]
 
 [node name="Intro" type="Node" parent="GameState"]
 
 [node name="Combat" type="Node" parent="GameState"]
+
+[node name="CameraBattlePoint" type="Node3D" parent="."]
+transform = Transform3D(0.998242, -0.025187, 0.0536529, 0, 0.905217, 0.424949, -0.0592707, -0.424202, 0.903626, -1.85755, 5.34487, 10.2437)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.998242, -0.025187, 0.0536528, 0, 0.905217, 0.424949, -0.0592707, -0.424202, 0.903626, -1.85755, 5.34487, 10.2437)
@@ -370,8 +412,12 @@ wait_time = 2.0
 [node name="WaterSpout" parent="NavigationRegion3D" instance=ExtResource("12_vlh0m")]
 
 [node name="WaterSpout2" parent="NavigationRegion3D" instance=ExtResource("12_vlh0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46458, 0, -1.82423)
+spout_num = 2
 
 [node name="WaterSpout3" parent="NavigationRegion3D" instance=ExtResource("12_vlh0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.17267, 0, 2.54264)
+spout_num = 3
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
 transform = Transform3D(-0.0346114, 0.995125, 0.0923532, -0.999396, -0.03476, 1.2692e-09, 0.0032102, -0.0922974, 0.995726, -8.04194, 0, 0)
@@ -410,14 +456,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5564, 0.882551, -8.91632)
 script = ExtResource("14_40q37")
 
 [node name="Timer" type="Timer" parent="NavigationRegion3D/EnemySpawner"]
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="EnemySpawner2" type="Node3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.4323, 0.882551, -8.91632)
 script = ExtResource("14_40q37")
 
 [node name="Timer" type="Timer" parent="NavigationRegion3D/EnemySpawner2"]
-wait_time = 5.0
+wait_time = 3.0
 
 [node name="CutscenePlayer" type="AnimationPlayer" parent="NavigationRegion3D"]
 libraries = {
@@ -479,6 +525,26 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("18_6d3kn")
 text = "Health"
 
+[node name="Defeated" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 105.0
+offset_top = 1.0
+offset_right = 222.0
+offset_bottom = 42.0
+script = ExtResource("18_tvdno")
+
+[node name="Label" type="Label" parent="CanvasLayer/Defeated"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 1.0
+offset_right = 98.0
+offset_bottom = 24.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_6d3kn")
+text = "Defeated"
+
 [node name="Restart" type="Control" parent="CanvasLayer"]
 process_mode = 2
 visible = false
@@ -504,6 +570,17 @@ theme_override_fonts/font = ExtResource("18_6d3kn")
 theme_override_font_sizes/font_size = 35
 text = "YOU DIED"
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -357.0
+offset_top = -11.0
+offset_bottom = 202.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_q6bfn")
+}
+
 [connection signal="died" from="NavigationRegion3D/Player" to="." method="_on_player_died"]
 [connection signal="firing" from="NavigationRegion3D/Player/Shooter" to="NavigationRegion3D/Player" method="_on_shooter_firing"]
 [connection signal="animation_finished" from="NavigationRegion3D/Player/MamaModel/AnimationPlayer" to="NavigationRegion3D/Player" method="_on_animation_player_animation_finished"]
@@ -514,7 +591,9 @@ text = "YOU DIED"
 [connection signal="animation_finished" from="NavigationRegion3D/Player2/sister/AnimationPlayer" to="NavigationRegion3D/Player2" method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="NavigationRegion3D/Player2/Hitbox" to="NavigationRegion3D/Player2" method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="NavigationRegion3D/Player2/InvinTimer" to="NavigationRegion3D/Player2" method="_on_invin_timer_timeout"]
+[connection signal="kill_count" from="NavigationRegion3D/EnemySpawner" to="." method="_on_enemy_spawner_kill_count"]
 [connection signal="timeout" from="NavigationRegion3D/EnemySpawner/Timer" to="NavigationRegion3D/EnemySpawner" method="_on_timer_timeout"]
+[connection signal="kill_count" from="NavigationRegion3D/EnemySpawner2" to="." method="_on_enemy_spawner_2_kill_count"]
 [connection signal="timeout" from="NavigationRegion3D/EnemySpawner2/Timer" to="NavigationRegion3D/EnemySpawner2" method="_on_timer_timeout"]
 [connection signal="animation_finished" from="NavigationRegion3D/CutscenePlayer" to="." method="_on_cutscene_player_animation_finished"]
 

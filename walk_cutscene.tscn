@@ -1,0 +1,564 @@
+[gd_scene load_steps=24 format=3 uid="uid://bx286tmbibq48"]
+
+[ext_resource type="Texture2D" uid="uid://b4s611si0paky" path="res://groundtex.PNG" id="1_72dh7"]
+[ext_resource type="Script" path="res://walk_cutscene.gd" id="1_t4bfo"]
+[ext_resource type="Texture2D" uid="uid://ba7m0bmo8rpur" path="res://tree.png" id="2_co37c"]
+[ext_resource type="PackedScene" uid="uid://vax1jmmj88hq" path="res://mama_model.tscn" id="3_07oxy"]
+[ext_resource type="PackedScene" uid="uid://c0sjq3n0nlgv2" path="res://leoni/sister.tscn" id="4_pm42b"]
+[ext_resource type="Script" path="res://MamaPosition.gd" id="4_x8wui"]
+[ext_resource type="Script" path="res://LeoniPosition.gd" id="6_kt6sl"]
+[ext_resource type="AudioStream" uid="uid://dy30y0hpqni5b" path="res://dialogue/Iroh's Tsungi Horn.mp3" id="8_kk2cw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxew7"]
+albedo_texture = ExtResource("1_72dh7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as6m6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_lo67b"]
+material = SubResource("StandardMaterial3D_as6m6")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jvuy8"]
+sky_top_color = Color(0.992188, 0.667969, 0.191406, 1)
+sky_horizon_color = Color(0.996094, 0.910156, 0.441406, 1)
+ground_bottom_color = Color(0.992188, 0.832031, 0.378906, 1)
+ground_horizon_color = Color(0.992188, 0.820313, 0.363281, 1)
+
+[sub_resource type="Sky" id="Sky_npiao"]
+sky_material = SubResource("ProceduralSkyMaterial_jvuy8")
+
+[sub_resource type="Environment" id="Environment_uxbpb"]
+background_mode = 2
+background_color = Color(0.564706, 0.670588, 0.976471, 1)
+sky = SubResource("Sky_npiao")
+
+[sub_resource type="Animation" id="Animation_whys5"]
+resource_name = "Walk_to_Collapse"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MamaPosition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.76375)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaPosition:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0), Vector3(0, -3.14159, 0), Vector3(0, -1.50959, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeoniPosition:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -0.522963, 0), Vector3(0, -0.561149, -2.76375)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeoniPosition:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MamaPosition")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"play_idle"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeoniPosition")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"play_collapse"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_udnoc"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MamaPosition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.72697)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaPosition:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeoniPosition:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.72697)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeoniPosition:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MamaPosition")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeoniPosition")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f8acd"]
+resource_name = "check_foot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MamaPosition:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.50959, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2.76375), Vector3(-1.28926, 0, -2.76375)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaPosition")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"play_talk"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6hbct"]
+resource_name = "move_on"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeoniPosition")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_get_up"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qg4nc"]
+_data = {
+"RESET": SubResource("Animation_udnoc"),
+"Walk_to_Collapse": SubResource("Animation_whys5"),
+"check_foot": SubResource("Animation_f8acd"),
+"move_on": SubResource("Animation_6hbct")
+}
+
+[sub_resource type="Animation" id="Animation_65iqv"]
+resource_name = "enter_scene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-23, -17), Vector2(329, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_tiu7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_a135f"]
+resource_name = "move_on"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7bah"]
+_data = {
+"RESET": SubResource("Animation_tiu7e"),
+"enter_scene": SubResource("Animation_65iqv"),
+"move_on": SubResource("Animation_a135f")
+}
+
+[node name="walkCutscene" type="Node3D"]
+script = ExtResource("1_t4bfo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(202.384, 0, 0, 0, 3.88993, 0, 0, 0, 190.257, 0, -2.06233, 0)
+material_override = SubResource("StandardMaterial3D_lxew7")
+mesh = SubResource("BoxMesh_lo67b")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uxbpb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.053556, 0.998565, 0, -0.998565, -0.053556, 0, 17.054, 13.4543)
+light_energy = 0.856
+
+[node name="Tree group" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.7913, 3.94265, -18.0981)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D2" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.235, 3.94265, -12.7072)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D3" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1825, 3.94265, -16.3788)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D4" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.76594, 3.94265, -21.3806)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D5" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.23944, 3.94265, -5.98022)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D6" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6832, 3.94265, -0.589373)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D7" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6306, 3.94265, -4.26098)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D8" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.21414, 3.94265, -9.26274)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D9" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.19561, 3.94265, -21.4124)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D10" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.49931, 3.94265, -9.83283)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D11" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18251, 3.94265, -14.793)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D12" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.81001, 3.94265, -16.585)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D13" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.38871, 3.94265, -6.92283)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D14" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.46501, 3.94265, -3.56966)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D15" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.71006, 3.94265, -10.5708)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D16" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9341, 3.94265, -12.2417)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D17" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3567, 3.94265, 0.194571)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D18" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8004, 3.94265, 5.58547)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D19" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7479, 3.94265, 1.91387)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D20" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3313, 3.94265, -3.08793)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D21" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8048, 3.94265, 12.3125)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D22" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2486, 3.94265, 17.7033)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D23" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.196, 3.94265, 14.0317)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D24" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7795, 3.94265, 9.02993)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D25" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8293, 3.94265, -3.11973)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D26" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.133, 3.94265, 8.45984)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D27" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8162, 3.94265, 3.49967)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D28" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4437, 3.94265, 1.70767)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D29" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0224, 3.94265, 11.3698)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D30" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0987, 3.94265, 14.723)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D31" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.34375, 3.94265, 7.72187)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D32" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5678, 3.94265, 6.05097)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D33" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.3567, 3.94265, 20.4081)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D34" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.8004, 3.94265, 25.799)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D35" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7479, 3.94265, 22.1274)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D36" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.3313, 3.94265, 17.1256)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D37" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8048, 3.94265, 32.526)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D38" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.2486, 3.94265, 37.9168)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D39" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.196, 3.94265, 34.2452)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D40" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7795, 3.94265, 29.2434)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D41" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.8293, 3.94265, 17.0938)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D42" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.133, 3.94265, 28.6734)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D43" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8162, 3.94265, 23.7132)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D44" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4437, 3.94265, 21.9212)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D45" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0224, 3.94265, 31.5834)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D46" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0987, 3.94265, 34.9365)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D47" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.34375, 3.94265, 27.9354)
+texture = ExtResource("2_co37c")
+
+[node name="Sprite3D48" type="Sprite3D" parent="Tree group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5678, 3.94265, 26.2645)
+texture = ExtResource("2_co37c")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.999478, 0.0139894, -0.0291356, 0, 0.901471, 0.432839, 0.03232, -0.432613, 0.901, -1.16576, 3.41181, 0.242088)
+
+[node name="MamaPosition" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+script = ExtResource("4_x8wui")
+
+[node name="20250222Mama" parent="MamaPosition" instance=ExtResource("3_07oxy")]
+
+[node name="LeoniPosition" type="Node3D" parent="."]
+script = ExtResource("6_kt6sl")
+
+[node name="sister" parent="LeoniPosition" instance=ExtResource("4_pm42b")]
+transform = Transform3D(-0.999555, 0, 0.0298233, 0, 1, 0, -0.0298233, 0, -0.999555, -2.13883, 0.535707, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qg4nc")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -23.0
+offset_top = -17.0
+offset_right = 334.0
+offset_bottom = 196.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_p7bah")
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 319.0
+offset_bottom = 179.0
+
+[node name="TextboxPos" type="Node2D" parent="CanvasLayer/Control"]
+position = Vector2(152, 171)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("8_kk2cw")
+autoplay = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

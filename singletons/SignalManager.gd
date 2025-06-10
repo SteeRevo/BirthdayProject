@@ -1,8 +1,10 @@
 extends Node
 
 signal intro_done
+signal check_foot
+signal move_on
+signal exit_scene
 
 func emit(sig):
-	match sig:
-		"intro_done":
-			emit_signal("intro_done")
+	emit_signal(sig)
+			
