@@ -1,0 +1,262 @@
+[gd_scene load_steps=25 format=3 uid="uid://b4s0auwfvt0m4"]
+
+[ext_resource type="Texture2D" uid="uid://b4s611si0paky" path="res://groundtex.PNG" id="1_0l042"]
+[ext_resource type="Script" path="res://end_scene.gd" id="1_6buv3"]
+[ext_resource type="Texture2D" uid="uid://bhkmc2x5j3h3n" path="res://water-pool-texture-seamless-and-free-thumb36.png" id="2_7s5us"]
+[ext_resource type="PackedScene" uid="uid://cbjithyf3pgqi" path="res://Boat.glb" id="3_t5nt8"]
+[ext_resource type="Script" path="res://MamaPosition.gd" id="4_g3hy3"]
+[ext_resource type="PackedScene" uid="uid://vax1jmmj88hq" path="res://mama_model.tscn" id="5_q1xqa"]
+[ext_resource type="Script" path="res://LeoniPosition.gd" id="6_rhsg1"]
+[ext_resource type="PackedScene" uid="uid://c0sjq3n0nlgv2" path="res://leoni/sister.tscn" id="7_gk606"]
+[ext_resource type="AudioStream" uid="uid://q433riqb3vf4" path="res://The Avatar's Love [Full HQ].mp3" id="9_5r2po"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_666pb"]
+albedo_texture = ExtResource("1_0l042")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as6m6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yslx4"]
+material = SubResource("StandardMaterial3D_as6m6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xlcly"]
+albedo_texture = ExtResource("2_7s5us")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kchba"]
+sky_top_color = Color(0.647059, 0.866667, 0.545098, 1)
+sky_horizon_color = Color(0.666667, 0.682353, 0.372549, 1)
+ground_bottom_color = Color(0.171875, 0.941406, 0.949219, 1)
+ground_horizon_color = Color(0.658824, 0.690196, 0.231373, 1)
+
+[sub_resource type="Sky" id="Sky_nuoap"]
+sky_material = SubResource("ProceduralSkyMaterial_kchba")
+
+[sub_resource type="Environment" id="Environment_erw5e"]
+resource_local_to_scene = true
+background_mode = 2
+background_color = Color(0.564706, 0.670588, 0.976471, 1)
+sky = SubResource("Sky_nuoap")
+
+[sub_resource type="Animation" id="Animation_iptes"]
+resource_name = "Walk_to_boat"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MamaPosition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-17.415, 0, -22.3123), Vector3(-17.415, 0, -30.7662)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeoniPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-17.415, 0, -22.3123), Vector3(-17.415, 0, -30.7662)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaPosition")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"play_talk"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeoniPosition")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}, {
+"args": [],
+"method": &"play_idle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_vplvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MamaPosition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-17.415, 0, -22.3123)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeoniPosition:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-17.415, 0, -22.3123)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73yoo"]
+_data = {
+"RESET": SubResource("Animation_vplvb"),
+"Walk_to_boat": SubResource("Animation_iptes")
+}
+
+[sub_resource type="Animation" id="Animation_tiu7e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-23, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_65iqv"]
+resource_name = "enter_scene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-23, -17), Vector2(329, -17)]
+}
+
+[sub_resource type="Animation" id="Animation_a135f"]
+resource_name = "move_on"
+
+[sub_resource type="Animation" id="Animation_hh175"]
+resource_name = "exit_scene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.02, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(319, -12), Vector2(-14, -15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7bah"]
+_data = {
+"RESET": SubResource("Animation_tiu7e"),
+"enter_scene": SubResource("Animation_65iqv"),
+"exit_scene": SubResource("Animation_hh175"),
+"move_on": SubResource("Animation_a135f")
+}
+
+[node name="EndScene" type="Node3D"]
+script = ExtResource("1_6buv3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(202.384, 0, 0, 0, 3.88993, 0, 0, 0, 190.257, 0, -2.06233, 58.8784)
+material_override = SubResource("StandardMaterial3D_666pb")
+mesh = SubResource("BoxMesh_yslx4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(828.282, 0, 0, 0, 3.88993, 0, 0, 0, 1379.31, 0, -4.11447, -728.683)
+material_override = SubResource("StandardMaterial3D_xlcly")
+mesh = SubResource("BoxMesh_yslx4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_erw5e")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.053556, 0.998565, 0, -0.998565, -0.053556, 0, 17.054, 72.3327)
+light_energy = 0.856
+
+[node name="Boat" parent="." instance=ExtResource("3_t5nt8")]
+transform = Transform3D(-0.0177665, 0, 0.999842, 0, 1, 0, -0.999842, 0, -0.0177665, -16.875, -1.84122, -48.7649)
+
+[node name="MamaPosition" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -17.415, 0, -22.3123)
+script = ExtResource("4_g3hy3")
+
+[node name="20250222Mama" parent="MamaPosition" instance=ExtResource("5_q1xqa")]
+
+[node name="LeoniPosition" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.415, 0, -22.3123)
+script = ExtResource("6_rhsg1")
+
+[node name="sister" parent="LeoniPosition" instance=ExtResource("7_gk606")]
+transform = Transform3D(-0.999555, 0, 0.0298233, 0, 1, 0, -0.0298233, 0, -0.999555, -2.13883, -0.00426018, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.916349, 0.154174, -0.369508, 0, 0.922889, 0.385067, 0.400382, -0.352855, 0.845688, -20.3051, 3.50259, -24.9803)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_73yoo")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_left = -23.0
+offset_top = -17.0
+offset_right = 334.0
+offset_bottom = 196.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_p7bah")
+}
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 319.0
+offset_bottom = 179.0
+
+[node name="TextboxPos" type="Node2D" parent="CanvasLayer/Control"]
+position = Vector2(152, 171)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5r2po")
+autoplay = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="CanvasLayer/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

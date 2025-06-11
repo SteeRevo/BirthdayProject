@@ -44,6 +44,8 @@ func _on_animation_player_animation_finished(anim_name):
 		DialogueManager.start_dialogue(textboxPos.global_position, lines2, canvas, "move_on")
 	if anim_name == "move_on":
 		DialogueManager.start_dialogue(textboxPos.global_position, lines3, canvas, "exit_scene")
+	if anim_name == "exit_scene":
+		get_tree().change_scene_to_file("res://end_scene.tscn")
 
 func check_foot_animation():
 	ap.play("check_foot")
@@ -53,4 +55,4 @@ func move_on():
 	
 func exit_scene():
 	print("exit scene")
-	canvasAP.play_backwards("enter_scene")
+	canvasAP.play("exit_scene")

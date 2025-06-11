@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bx286tmbibq48"]
+[gd_scene load_steps=25 format=3 uid="uid://bx286tmbibq48"]
 
 [ext_resource type="Texture2D" uid="uid://b4s611si0paky" path="res://groundtex.PNG" id="1_72dh7"]
 [ext_resource type="Script" path="res://walk_cutscene.gd" id="1_t4bfo"]
@@ -12,10 +12,10 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lxew7"]
 albedo_texture = ExtResource("1_72dh7")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_as6m6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_650ct"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lo67b"]
-material = SubResource("StandardMaterial3D_as6m6")
+material = SubResource("StandardMaterial3D_650ct")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jvuy8"]
 sky_top_color = Color(0.992188, 0.667969, 0.191406, 1)
@@ -23,13 +23,91 @@ sky_horizon_color = Color(0.996094, 0.910156, 0.441406, 1)
 ground_bottom_color = Color(0.992188, 0.832031, 0.378906, 1)
 ground_horizon_color = Color(0.992188, 0.820313, 0.363281, 1)
 
-[sub_resource type="Sky" id="Sky_npiao"]
+[sub_resource type="Sky" id="Sky_qpuae"]
 sky_material = SubResource("ProceduralSkyMaterial_jvuy8")
 
 [sub_resource type="Environment" id="Environment_uxbpb"]
 background_mode = 2
 background_color = Color(0.564706, 0.670588, 0.976471, 1)
-sky = SubResource("Sky_npiao")
+sky = SubResource("Sky_qpuae")
+
+[sub_resource type="Animation" id="Animation_udnoc"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MamaPosition:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.72697)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaPosition:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.14159, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LeoniPosition:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.72697)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LeoniPosition:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MamaPosition")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LeoniPosition")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_walk"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_whys5"]
 resource_name = "Walk_to_Collapse"
@@ -117,84 +195,6 @@ tracks/5/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_udnoc"]
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MamaPosition:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.72697)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MamaPosition:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, -3.14159, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("LeoniPosition:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 0, -2.72697)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("LeoniPosition:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/4/type = "method"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MamaPosition")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"play_walk"
-}]
-}
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("LeoniPosition")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"play_walk"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_f8acd"]
 resource_name = "check_foot"
 tracks/0/type = "value"
@@ -264,21 +264,6 @@ _data = {
 "move_on": SubResource("Animation_6hbct")
 }
 
-[sub_resource type="Animation" id="Animation_65iqv"]
-resource_name = "enter_scene"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-23, -17), Vector2(329, -17)]
-}
-
 [sub_resource type="Animation" id="Animation_tiu7e"]
 length = 0.001
 tracks/0/type = "value"
@@ -294,13 +279,44 @@ tracks/0/keys = {
 "values": [Vector2(-23, -17)]
 }
 
+[sub_resource type="Animation" id="Animation_65iqv"]
+resource_name = "enter_scene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-23, -17), Vector2(329, -17)]
+}
+
 [sub_resource type="Animation" id="Animation_a135f"]
 resource_name = "move_on"
+
+[sub_resource type="Animation" id="Animation_hh175"]
+resource_name = "exit_scene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.02, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(319, -12), Vector2(-14, -15)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p7bah"]
 _data = {
 "RESET": SubResource("Animation_tiu7e"),
 "enter_scene": SubResource("Animation_65iqv"),
+"exit_scene": SubResource("Animation_hh175"),
 "move_on": SubResource("Animation_a135f")
 }
 
@@ -517,7 +533,7 @@ texture = ExtResource("2_co37c")
 transform = Transform3D(0.999478, 0.0139894, -0.0291356, 0, 0.901471, 0.432839, 0.03232, -0.432613, 0.901, -1.16576, 3.41181, 0.242088)
 
 [node name="MamaPosition" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -2.53518e-06, 0, 1, 0, 2.53518e-06, 0, -1, 0, 0, 0)
 script = ExtResource("4_x8wui")
 
 [node name="20250222Mama" parent="MamaPosition" instance=ExtResource("3_07oxy")]

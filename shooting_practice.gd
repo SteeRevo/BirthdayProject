@@ -30,6 +30,7 @@ const lines2: Array[String] = [
 
 func _ready():
 	SignalManager.connect("intro_done", start_combat)
+	SignalManager.connect("exit_scene", change_scene)
 	player1.in_dialogue = true
 	player2.in_dialogue = true
 	cutscenePlayer.play("walk_to_spot")
@@ -81,8 +82,8 @@ func enemy_killed_increase():
 		print("first_level_Complete")
 		enemy_spawner1.queue_free()
 		enemy_spawner2.queue_free()
-		DialogueManager.start_dialogue(textboxPos.global_position, lines2, canvas, null)
-		canvasAnimation.play("transition")
+		DialogueManager.start_dialogue(textboxPos.global_position, lines2, canvas, "exit_scene")
+		
 
 
 func _on_enemy_spawner_kill_count():
@@ -91,3 +92,10 @@ func _on_enemy_spawner_kill_count():
 
 func _on_enemy_spawner_2_kill_count():
 	enemy_killed_increase()
+
+func change_scene():
+	canvasAnimation.play("transition")
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "transition":
+		get_tree().change_scene_to_file("res://walk_cutscene.tscn")
